@@ -1,0 +1,110 @@
+:root {
+  --fondo: #f4f6f9;
+  --tarjeta: #ffffff;
+  --texto: #1d2733;
+  --suave: #5b6878;
+  --borde: #d9dee5;
+  --primario: #1f4e79;
+  --primario-hover: #163a5a;
+  --ok: #1e7a46;
+  --ok-fondo: #e3f4ea;
+  --error: #b42318;
+  --error-fondo: #fdecea;
+  --curso: #8a5a00;
+  --curso-fondo: #fff4d6;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.app { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+
+header h1 { margin: 0 0 20px; font-size: 1.6rem; color: var(--primario); }
+header p { margin: 4px 0 20px; color: var(--suave); }
+
+nav { display: flex; gap: 4px; border-bottom: 2px solid var(--borde); margin-bottom: 20px; flex-wrap: wrap; }
+.pestana {
+  background: none; color: var(--suave); border: none; border-bottom: 3px solid transparent;
+  padding: 10px 16px; font-size: 0.95rem; cursor: pointer; margin-bottom: -2px; border-radius: 0;
+}
+.pestana:hover { color: var(--primario); background: none; }
+.pestana.activa { color: var(--primario); border-bottom-color: var(--primario); font-weight: 600; }
+
+main section { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 10px; padding: 20px; }
+h2 { margin: 0 0 16px; font-size: 1.2rem; }
+h3 { margin: 0 0 12px; font-size: 1rem; }
+
+.formulario { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+.campo { display: flex; flex-direction: column; gap: 4px; min-width: 160px; flex: 1; font-size: 0.85rem; color: var(--suave); }
+.campo input, .campo select {
+  padding: 8px 10px; border: 1px solid var(--borde); border-radius: 6px; font-size: 0.95rem; color: var(--texto);
+  background: #fff;
+}
+.campo input:focus, .campo select:focus { outline: 2px solid var(--primario); outline-offset: -1px; }
+.campo-error input, .campo-error select { border-color: var(--error); }
+.campo small { color: var(--error); }
+
+button {
+  background: var(--primario); color: #fff; border: none; border-radius: 6px;
+  padding: 9px 16px; font-size: 0.9rem; cursor: pointer; align-self: flex-end; margin-top: 20px;
+}
+button:hover { background: var(--primario-hover); }
+button:disabled { opacity: 0.6; cursor: wait; }
+button.secundario { background: #e8edf3; color: var(--primario); }
+button.secundario:hover { background: #d6dfe9; }
+button.peligro { background: none; color: var(--error); border: 1px solid var(--error); }
+button.peligro:hover { background: var(--error-fondo); }
+.acciones { display: flex; gap: 6px; flex-wrap: wrap; }
+.acciones button { margin-top: 0; padding: 5px 10px; }
+.panel .acciones button { padding: 9px 16px; }
+
+.aviso { padding: 10px 12px; border-radius: 6px; margin: 0 0 12px; font-size: 0.9rem; }
+.aviso-ok { background: var(--ok-fondo); color: var(--ok); }
+.aviso-error { background: var(--error-fondo); color: var(--error); }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 8px; }
+th { text-align: left; color: var(--suave); font-weight: 600; border-bottom: 2px solid var(--borde); padding: 8px; }
+td { border-bottom: 1px solid var(--borde); padding: 8px; }
+tr.activa td { background: #eef4fb; }
+.vacio { text-align: center; color: var(--suave); padding: 20px; }
+
+.etiqueta { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+.etiqueta.APROBADO { background: var(--ok-fondo); color: var(--ok); }
+.etiqueta.REPROBADO { background: var(--error-fondo); color: var(--error); }
+.etiqueta.EN_CURSO { background: var(--curso-fondo); color: var(--curso); }
+
+.panel { border: 1px solid var(--primario); border-radius: 8px; padding: 16px; margin-bottom: 16px; background: #f8fbff; }
+.previo { display: flex; flex-direction: column; gap: 4px; min-width: 140px; font-size: 0.85rem; color: var(--suave); }
+.previo strong { font-size: 1.4rem; color: var(--texto); }
+
+@media (max-width: 700px) {
+  table { display: block; overflow-x: auto; }
+}
+
+/* Las celdas de acciones siguen siendo celdas de tabla */
+td.acciones { display: table-cell; white-space: nowrap; }
+td.acciones button + button { margin-left: 6px; }
+
+/* Ayuda de la fórmula: nube al pasar el puntero o al hacer clic */
+.titulo-con-ayuda { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.titulo-con-ayuda h2 { margin: 0; }
+.ayuda { position: relative; display: inline-flex; }
+button.ayuda-boton {
+  margin: 0; padding: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: #e8edf3; color: var(--primario); font: italic 600 0.8rem Georgia, serif; align-self: center;
+}
+button.ayuda-boton:hover { background: #d6dfe9; }
+.ayuda-nube {
+  display: none; position: absolute; left: 32px; top: 50%; transform: translateY(-50%); z-index: 10;
+  width: max-content; max-width: 440px; background: var(--texto); color: #fff; border-radius: 8px;
+  padding: 10px 14px; font-size: 0.85rem; line-height: 1.5; box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  flex-direction: column; gap: 2px;
+}
+.ayuda-nube::before {
+  content: ''; position: absolute; left: -6px; top: 50%; transform: translateY(-50%);
+  border: 6px solid transparent; border-left: 0; border-right-color: var(--texto);
+}
+.ayuda:hover .ayuda-nube, .ayuda-nube.visible { display: flex; }
