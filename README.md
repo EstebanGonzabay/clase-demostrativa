@@ -161,5 +161,3 @@ Ejemplo: `database/04_cambio_escala_50.sql`, dentro de una transacción para que
 
 ---
 Autor: Mgtr. Esteban Gonzabay Jiménez
-#   c l a s e - d e m o s t r a t i v a  
- 
